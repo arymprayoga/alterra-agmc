@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/arymprayoga/alterra-agmc/day2/lib/database"
-	"github.com/arymprayoga/alterra-agmc/day2/models"
+	"day2/lib/database"
+	"day2/models"
+
 	"github.com/labstack/echo/v4"
 )
 

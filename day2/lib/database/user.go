@@ -1,8 +1,8 @@
 package database
 
 import (
-	"github.com/arymprayoga/alterra-agmc/day2/config"
-	"github.com/arymprayoga/alterra-agmc/day2/models"
+	"day2/config"
+	"day2/models"
 )
 
 func GetUsers() ([]models.Users, error) {

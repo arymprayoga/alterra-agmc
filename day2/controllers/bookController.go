@@ -5,7 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/arymprayoga/alterra-agmc/day2/models"
+	"day2/models"
+
 	"github.com/labstack/echo/v4"
 )
 

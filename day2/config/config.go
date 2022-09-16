@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/arymprayoga/alterra-agmc/day2/models"
+	"day2/models"
+
 	_ "github.com/joho/godotenv/autoload"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

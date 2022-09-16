@@ -1,7 +1,8 @@
 package routes
 
 import (
-	"github.com/arymprayoga/alterra-agmc/day2/controllers"
+	"day2/controllers"
+
 	"github.com/labstack/echo/v4"
 )
 
