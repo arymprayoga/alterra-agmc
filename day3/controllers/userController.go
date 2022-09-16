@@ -91,3 +91,21 @@ func DeleteUser(ctx echo.Context) error {
 		"status": "success",
 	})
 }
+
+func LoginUsers(ctx echo.Context) error {
+	u := models.Users{}
+	ctx.Bind(&u)
+	if err := ctx.Validate(u); err != nil {
+		return err
+	}
+
+	token, err := database.LoginUsers(u)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
+	response := map[string]interface{}{
+		"token": token,
+	}
+	return ctx.JSON(http.StatusOK, response)
+}

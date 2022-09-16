@@ -2,6 +2,7 @@ package database
 
 import (
 	"day3/config"
+	"day3/middleware"
 	"day3/models"
 )
 
@@ -54,4 +55,17 @@ func DeleteUser(id int) error {
 	}
 
 	return nil
+}
+
+func LoginUsers(user models.Users) (*string, error) {
+	if err := config.DB.Where("email = ? AND password = ?", user.Email, user.Password).Error; err != nil {
+		return nil, err
+	}
+	token, err := middleware.CreateToken(user.ID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &token, nil
 }

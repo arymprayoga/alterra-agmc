@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"day3/config"
-	"day3/middlewares"
+	mid "day3/middleware"
 	"day3/routes"
 
 	"github.com/go-playground/validator/v10"
@@ -23,9 +23,9 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 }
 
 func main() {
-	user, err = middlewares.CreateToken(1)
 	config.InitDB()
 	e := routes.New()
+	mid.LogMiddleware(e)
 	e.Validator = &CustomValidator{validator: validator.New()}
 	e.Logger.Fatal(e.Start(":8000"))
 }
