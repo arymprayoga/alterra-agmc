@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	"day3/config"
-	mid "day3/middleware"
-	"day3/routes"
+	"day4/config"
+	mid "day4/middleware"
+	"day4/routes"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
