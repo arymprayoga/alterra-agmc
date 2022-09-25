@@ -22,9 +22,9 @@ jobs:
           port: 22
           script: |
             cd ~/alterra-agmc
-            git pull
+            git pull origin/main
             git status
             cd day10
-            go mod tidy
-            go build main.go
+            sudo go mod tidy
+            sudo go build main.go
             ./main
