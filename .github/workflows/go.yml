@@ -21,10 +21,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd alterra-agmc
+            cd ~/alterra-agmc
             git pull origin master
             git status
-            cd day10
+            cd ~/day10
             go mod tidy
-            go build
+            go build main.go
             ./main
