@@ -27,4 +27,3 @@ jobs:
             cd day10
             sudo go mod tidy
             sudo go build main.go
-            ./main
