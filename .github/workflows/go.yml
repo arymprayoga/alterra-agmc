@@ -24,7 +24,7 @@ jobs:
             cd ~/alterra-agmc
             git pull origin master
             git status
-            cd ~/day10
+            cd day10
             go mod tidy
             go build main.go
             ./main
