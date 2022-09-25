@@ -1,0 +1,31 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  deploy:
+    name: Deploy to EC2 on main branch push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v3
+      
+      - name: Deploy to Server EC2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
+            #Now we have got the access of EC2 and we will start the deploy .
+            cd alterra-agmc
+            git pull origin master
+            git status
+            cd day10
+            go mod tidy
+            go build
+            ./main
