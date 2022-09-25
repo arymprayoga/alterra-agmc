@@ -13,7 +13,7 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v3
       
-      - name: Deploy to Server 
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -22,9 +22,9 @@ jobs:
           port: 22
           script: |
             cd ~/alterra-agmc
-            git pull origin master
+            git pull origin main
             git status
             cd day10
-            go mod tidy
-            go build main.go
+            sudo go mod tidy
+            sudo go build main.go
             ./main
