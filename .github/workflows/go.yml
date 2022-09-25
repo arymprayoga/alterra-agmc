@@ -13,15 +13,14 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v3
       
-      - name: Deploy to Server EC2
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-        run: |
-          echo "$SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
-            #Now we have got the access of EC2 and we will start the deploy .
+      - name: Deploy to Server 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
             cd alterra-agmc
             git pull origin master
             git status
